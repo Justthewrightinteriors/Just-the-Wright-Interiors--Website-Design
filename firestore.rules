@@ -1,0 +1,34 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidProduct(data) {
+      return data.keys().hasAll(['title', 'price']) 
+        && data.title is string 
+        && data.title.size() <= 200
+        && data.price is number;
+    }
+
+    match /products/{productId} {
+      // Anyone can view the catalog
+      allow get: if isValidId(productId);
+      allow list: if true;
+      
+      // Allow creation with valid schema 
+      // (Note usually this would be protected by an isAdmin() check)
+      allow create: if isValidProduct(request.resource.data);
+      
+      allow update: if isValidProduct(request.resource.data) && (
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title', 'price', 'image', 'category', 'description'])
+      );
+    }
+  }
+}
