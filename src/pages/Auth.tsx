@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
-import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, User } from 'firebase/auth';
+import { signInWithPopup(false), GoogleAuthProvider, signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 
 export default function Auth() {
