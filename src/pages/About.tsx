@@ -21,6 +21,18 @@ export default function About() {
               <p>
                 Whether you're looking for a single statement piece or seeking comprehensive interior design guidance, our team is dedicated to helping you craft a space that feels just right.
               </p>
+              <p>
+               Hours of operation:
+              </p>
+              <p>
+Monday: 7:00AM-11:00PM
+Tuesday: 7:00AM-11:00PM
+Wednesday: 7:00AM-11:00PM
+Thursday: 7:00AM-11:00PM
+Friday: 7:00AM-11:00PM
+Saturday: 9:00AM-5:00PM
+Sunday: 9:00AM-5:00PM
+               </p>
             </div>
           </motion.div>
           <motion.div
